@@ -1,0 +1,9 @@
+#Ant properties
+#Mon Jun 11 12:17:19 CEST 2018
+builddate=20180611 1214
+description=cbrchallangebackoffice
+name=cbrchallangebackoffice
+releasedate=20170512 1142
+vendor=hybris
+version=6.4.0.13
+version.api=6.4.0

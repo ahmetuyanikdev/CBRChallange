@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+
+	</collectiontypes>
+
+	<enumtypes>
+		<enumtype code="FeedbackPriorityEnum" autocreate="true" generate="true">
+			<value code="CRITICAL" />
+			<value code="HIGH"/>
+			<value code="MODERATE"/>
+			<value code="LOW"/>
+		</enumtype>
+	</enumtypes>
+
+	<relations>
+		<relation code="Customer2CustomerFeedBackRel" localized="false" autocreate="true" generate="true">
+			<sourceElement type="Customer" qualifier="customer" cardinality="one"/>
+			<targetElement type="CustomerFeedbackReview" qualifier="reviews" cardinality="many"/>
+		</relation>
+	</relations>
+
+	<itemtypes>
+
+		<!-- Add your item definitions here -->
+
+		<!-- TypeGroups are for structure of this file only -->
+
+		<typegroup name="CRM">
+			<itemtype code="CustomerFeedbackReview"
+					  autocreate="true" generate="true"
+					  extends="GenericItem"
+					  jaloclass="com.cbrchallenge.core.jalo.CustomerFeedbackReview">
+				<deployment table="CustomerFeedbackReview" typecode="11001"/>
+				<attributes>
+					<attribute qualifier="code" type="java.lang.String">
+						<persistence type="property"/>
+						<modifiers unique="true"/>
+					</attribute>
+					<attribute qualifier="explanation" type="java.lang.String">
+						<description>Explanation of review</description>
+						<modifiers/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="priority" type="FeedbackPriorityEnum">
+						<modifiers/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="issueDate" type="java.util.Date">
+						<modifiers search="true"/>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+	</itemtypes>
+
+</items>

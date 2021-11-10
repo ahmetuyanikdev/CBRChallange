@@ -1,0 +1,9 @@
+#Ant properties
+#Mon Jun 11 12:15:11 CEST 2018
+builddate=20180611 1214
+description=cbrchallange
+name=cbrchallange
+releasedate=20170512 1142
+vendor=hybris
+version=6.4.0.13
+version.api=6.4.0

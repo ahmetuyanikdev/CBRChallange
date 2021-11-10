@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config">
+
+	<context component="listview" type="Customer" merge-by="type">
+		<list-view:list-view>
+			<list-view:column qualifier="contactEmail"/>
+		</list-view:list-view>
+	</context>
+	<context merge-by="module" parent="auto" component="explorer-tree">
+		<explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+			<explorer-tree:type-node code="CustomerFeedbackReview" id="hmc_type_tree_customerfeedbackreview"/>
+		</explorer-tree:explorer-tree>
+	</context>
+	<context component="listview" type="CustomerFeedbackReview" merge-by="type" parent="GenericItem">
+		<list-view:list-view>
+			<list-view:column qualifier="code" label="type.customerfeedbackreview.pk.name"/>
+			<list-view:column qualifier="customer" label="type.customerfeedbackreview.customer.name"/>
+			<list-view:column qualifier="explanation" label="type.customerfeedbackreview.explanation.name"/>
+			<list-view:column qualifier="priority" label="type.customerfeedbackreview.priority.name"/>
+			<list-view:column qualifier="issueDate" label="type.customerfeedbackreview.issueDate.name"/>
+		</list-view:list-view>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="CustomerFeedbackReview" component="editor-area">
+		<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:tab name="hmc.properties">
+				<editorArea:section name="hmc.section.cmscomponent.features">
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea" qualifier="customer" label="type.customerfeedbackreview.customer.name"/>
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea" qualifier="explanation" label="type.customerfeedbackreview.explanation.name"/>
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea" qualifier="priority" label="type.customerfeedbackreview.priority.name"/>
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea" qualifier="issueDate" label="type.customerfeedbackreview.issueDate.name"/>
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+
+	<context type="CustomerFeedbackReview" component="create-wizard">
+		<wz:flow id="CustomerFeedbackReview" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="triggerPrepare">
+				<wz:initialize property="newTrigger" type="ctx.TYPE_CODE"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.customerfeedbackreview.essential.label">
+				<wz:content id="step1.content">
+					<wz:property-list root="newTrigger">
+						<wz:property qualifier="customer"/>
+						<wz:property qualifier="explanation"/>
+						<wz:property qualifier="priority"/>
+						<wz:property qualifier="issueDate"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:done>
+						<wz:save property="newTrigger"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context type="CustomerFeedbackReview" component="advanced-search">
+		<as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="OR">
+			<as:field-list disable-attributes-comparator="false" disable-subtypes-checkbox="false">
+				<as:field name="customer" operator="exists" selected="true"/>
+				<as:field name="priority" operator="equals" selected="true"/>
+				<as:field name="code" operator="contains" selected="true"/>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+
+</config>
