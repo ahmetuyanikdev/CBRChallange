@@ -2,7 +2,6 @@ package com.cbrchallange.core.dao;
 
 
 import com.cbrchallange.core.dao.impl.DefaultCustomerFeedBackReviewDao;
-import com.cbrchallange.core.data.CustomerFeedBackReviewData;
 import com.cbrchallenge.core.model.CustomerFeedbackReviewModel;
 import de.hybris.bootstrap.annotations.UnitTest;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
@@ -23,7 +22,7 @@ import java.util.List;
 
 @UnitTest
 @RunWith(MockitoJUnitRunner.class)
-public class TestCustomerReviewFeedbackDao {
+public class CustomerReviewFeedbackDaoTest {
 
     @InjectMocks
     private DefaultCustomerFeedBackReviewDao defaultCustomerFeedBackReviewDao;
